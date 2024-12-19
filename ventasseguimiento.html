@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento de Ventas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="img/DEIT.ico" type="img/DEIT.ico">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('img/DEIT.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #070707;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgba(169, 245, 174, 0.8);
+            padding: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar img {
+            width: 60px;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: #5cb85c;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #4cae4c;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        table {
+            margin-top: 20px;
+        }
+        .buttons a:hover {
+            background-color: #ff3300;
+            transform: translateY(-3px);
+        }        .logout-btn {
+            padding: 10px 20px;
+            background-color: #ff6600;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #ff3300;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar"> 
+            <img src="img/DEIT.jpg" alt="Logo">  
+            <a href="ventas.html">Filtraje</a>
+            <a href="ventasregistro.html">Insertar registros</a>
+            <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Seguimiento de Ventas</h1>
+
+        <label for="estatus-filtro">Filtrar por Estatus:</label>
+        <select id="estatus-filtro" class="form-control mb-3">
+            <!-- Los estatus se llenarán dinámicamente -->
+        </select>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre de la Empresa</th>
+                    <th>Giro de la Empresa</th>
+                    <th>Qué Produce</th>
+                    <th>No. Contacto</th>
+                    <th>Cargo</th>
+                    <th>Solicitan</th>
+                    <th>Celular/WhatsApp</th>
+                    <th>Teléfono</th>
+                    <th>Extensión</th>
+                    <th>Municipio</th>
+                    <th>Correo de Contacto</th>
+                    <th>Medio de Prospección</th>
+                    <th>Observaciones</th>
+                    <th>Estatus</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-resultados">
+                <!-- Los registros se cargarán aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+                // Función para cerrar sesión
+function cerrarSesion() {
+    fetch('logout.php')
+        .then(response => {
+            if (response.ok) {
+                window.location.href = 'index.html'; // Redirigir al inicio de sesión
+            } else {
+                console.error('Error al cerrar sesión');
+            }
+        })
+        .catch(error => {
+            console.error('Error al cerrar sesión:', error);
+        });
+}
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const estatusFiltro = document.querySelector("#estatus-filtro");
+            const tablaResultados = document.querySelector("#tabla-resultados");
+
+            // Función para cargar los registros y los estatus
+            function cargarRegistros(estatus = "") {
+                fetch(`ventasseguimiento1.php?estatus=${estatus}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error en la respuesta del servidor');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Limpiar la tabla
+                        tablaResultados.innerHTML = "";
+
+                        // Limpiar los estatus existentes en el filtro
+                        estatusFiltro.innerHTML = `<option value="">Todos</option>`;
+
+                        // Llenar el filtro de estatus con los valores únicos desde la base de datos
+                        data.estatuses.forEach(estatus => {
+                            const opcion = document.createElement("option");
+                            opcion.value = estatus;
+                            opcion.textContent = estatus;
+                            estatusFiltro.appendChild(opcion);
+                        });
+
+                        // Recorrer los registros obtenidos y agregarlos a la tabla
+                        data.registros.forEach(registro => {
+                            const fila = `
+                                <tr>
+                                    <td>${registro.id}</td>
+                                    <td>${registro.nombre_de_la_empresa}</td>
+                                    <td>${registro.giro_de_la_empresa}</td>
+                                    <td>${registro.que_produce}</td>
+                                    <td>${registro.No_Contacto}</td>
+                                    <td>${registro.cargo}</td>
+                                    <td>${registro.solicitan}</td>
+                                    <td>${registro.celular_whatsapp}</td>
+                                    <td>${registro.telefono}</td>
+                                    <td>${registro.extension}</td>
+                                    <td>${registro.municipio}</td>
+                                    <td>${registro.correo_de_contacto_correo_extra}</td>
+                                    <td>${registro.medio_de_prospeccion}</td>
+                                    <td>${registro.observaciones}</td>
+                                    <td>${registro.estatus}</td>
+                                </tr>
+                            `;
+                            tablaResultados.insertAdjacentHTML('beforeend', fila);
+                        });
+                    })
+                    .catch(error => console.error('Error al cargar los registros:', error));
+            }
+
+            // Escuchar el evento de cambio en el filtro de estatus
+            estatusFiltro.addEventListener("change", function () {
+                const estatusSeleccionado = estatusFiltro.value;
+                cargarRegistros(estatusSeleccionado); // Filtrar por estatus
+            });
+
+            // Cargar todos los registros y estatus al cargar la página
+            cargarRegistros();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+/* Fondo de la página */
+body {
+    background-image: url('img/fondo.jpg'); /* Asegúrate de que la imagen exista en el directorio img */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos de la tabla principal */
+.table-responsive {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 200px;
+}
+
+/* Información adicional siempre fija en la parte inferior */
+.informacion-adicional {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con algo de transparencia */
+    z-index: 999;
+    border-top: 1px solid #dee2e6;
+    padding: 10px;
+}
+
+/* Estilos para las tablas */
+.table {
+    margin-bottom: 0;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+/* Ajustes del botón de finalizar tiempo */
+.btn-finalizar {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Estilo para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .btn-finalizar {
+        bottom: 100px;
+        right: 20px;
+    }
+}
+
+/* Asegurar que el contenido tenga suficiente margen inferior para no cubrirlo */
+.container {
+    margin-bottom: 200px;
+}

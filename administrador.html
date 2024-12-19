@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="icon" href="img/DEIT.ico" type="img/DEIT.ico"
+    <link rel="stylesheet" href="https://unpkg.com/universe-css/css/universe.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('img/DEIT.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo más oscuro */
+            padding: 15px;
+        }
+
+        .navbar img {
+            width: 60px;
+            height: auto;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        #username-header {
+            color: #70d78a;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            background-color: #ff6600;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #ff3300;
+            transform: translateY(-3px);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 48px;
+            color: #4cd3e2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra */
+        }
+
+        p {
+            text-align: center;
+            font-size: 26px;
+            color: #4cd3e2;
+            margin-bottom: 40px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 35px;
+            background-color: #ff6600;
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .buttons a:hover {
+            background-color: #ff3300;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar"> 
+            <img src="img/DEIT.jpg" alt="Logo">
+            <span id="username-header">Bienvenido, Usuario!</span>
+            <div>
+                <a href="segimiento.html">Seguimiento</a>
+                <a href="ingreso.html">Ingresar Usuario</a>
+                <a href="insercion.html">Inserción de Datos</a>
+                <a href="empleados.html">Empleados asignar tareas</a>
+                <a href="nuevavacante.html">nueva vacante</a>
+                <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <h1 id="username-greeting">Hola, Usuario!</h1>
+    <div class="content">
+        <p>¿Qué deseas hacer hoy?</p>
+        <center>
+        <div class="buttons">
+            <a href="segimiento.html">Seguimiento</a>
+            <a href="ingreso.html">Ingresar usuarios</a>
+            <a href="insercion.html">Insertar registros</a>
+            <a href="empleados.html">Empleados asignar tareas</a>
+            <a href="nuevavacante.html">nueva vacante</a>
+        </div>
+    </center>
+    </div>
+    <script>
+        // Función para cerrar sesión
+function cerrarSesion() {
+    fetch('logout.php')
+        .then(response => {
+            if (response.ok) {
+                window.location.href = 'index.html'; // Redirigir al inicio de sesión
+            } else {
+                console.error('Error al cerrar sesión');
+            }
+        })
+        .catch(error => {
+            console.error('Error al cerrar sesión:', error);
+        });
+}
+
+    </script>
+
+    <script src="administrador.js"></script>
+</body>
+</html>

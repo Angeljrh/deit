@@ -1,0 +1,31 @@
+body {
+    background-image: url('img/DEIT.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Estilo para el encabezado */
+header {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.navbar img {
+    width: 50px;
+    height: auto;
+}
+
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #007bff; /* Color azul atractivo */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajustes para centrar el formulario */
+.card {
+    background-color: rgba(255, 255, 255, 0.85); /* Fondo semitransparente para la tarjeta */
+}

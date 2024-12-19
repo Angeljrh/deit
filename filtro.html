@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro</title>
+    <link rel="stylesheet" href="registros.css">
+    <script src="registros.js" defer></script>
+    <link rel="icon" href="img/DEIT.ico" type="img/DEIT.ico">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <img src="img/DEIT.jpg" alt="Logo">
+            <a href="iniciosesion.html">USUARIO</a>
+            
+        </div>
+    </header>
+    <p class="center">Vacante:</p>
+    <select id="opciones" name="opciones" class="dropdown" onchange="redirigirFormulario()">
+        <option value="" disabled selected>Seleccione una empresa</option>
+        <option value="almacenista">ALMACENISTA</option>
+        <option value="montacargista">MONTACARGISTA</option>
+        <option value="farmaceutico">FARMACÉUTICO</option>
+        <option value="costurera">COSTURERA</option>
+        <option value="chofer_de_reparto">CHOFER DE REPARTO</option>
+        <option value="auxiliar_de_inventarios">AUXILIAR DE INVENTARIOS</option>
+        <option value="supervisor_de_produccion">SUPERVISOR DE PRODUCCION</option>
+        <option value="chofer_de_equipos_pesados">CHOFER DE EQUIPOS PESADOS</option>
+        <option value="operador_de_maquinaria">OPERADOR DE MAQUINARIA</option>
+        <option value="inspector_de_calidad">INSPECTOR DE CALIDAD</option>
+        <option value="operador_logistico">OPERADOR LOGISTICO</option>
+        <option value="auxiliar_de_limpieza">AUXILIAR DE LIMPIEZA</option>
+        <option value="empacador">EMPACADOR</option>
+        <option value="vacantes_administrativos">VACANTES ADMINISTRATIVO</option>
+    </select>
+    <br>
+    <br>
+<table border="8" cellspacing="10"> 
+    <thead>
+        <tr>
+        <td>Nombre</td>
+        <td>Edad</td>
+        <td>Telefono</td>
+        <td>Ubicacion</td>
+        <td>Comentarios</td>
+        <td><p class="center">Estatus:</p>
+    
+        <select id="opciones" name="opciones" class="dropdown" onchange="redirigirFormulario()">
+            <option value="" disabled selected>Estatus</option>
+             
+            <option value="montacargista">Citado</option></p>
+        </select>
+        </tr>
+        </thead>
+        </table>
+        <br>
+        <br>
+       <center> <button type="submit" class="btn" id="contratados">Contratados</button>
+        <button type="submit" class="btn" id="citados">Citados</button> </center>
+
+</body>
+</html>

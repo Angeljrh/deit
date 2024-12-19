@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventas</title>
+    <link rel="icon" href="img/DEIT.ico" type="img/DEIT.ico">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('img/DEIT.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #070707;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgba(169, 245, 174, 0.8);
+            padding: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar img {
+            width: 60px;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            resize: none;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .buttons a:hover {
+            background-color: #ff3300;
+            transform: translateY(-3px);
+        }
+        .logout-btn {
+            padding: 10px 20px;
+            background-color: #ff6600;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #ff3300;
+            transform: translateY(-3px);
+        }
+    </style>
+    <script src="ventas.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="navbar"> 
+            <img src="img/DEIT.jpg" alt="Logo">  
+            <a href="ventasregistro.html">insertar registros</a>
+            <a href="ventasseguimiento.html">Seguimiento</a>
+            <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
+        </div>
+    </header>
+    <div class="container mt-4">
+        <h1>Registro de Ventas</h1>
+        <div id="tabla-contenido" class="table-responsive">Cargando datos...</div>
+    </div>
+    <script>
+    // Función para cerrar sesión
+    function cerrarSesion() {
+        fetch('logout.php')
+            .then(response => {
+            if (response.ok) {
+                window.location.href = 'index.html'; // Redirigir al inicio de sesión
+            } else {
+                console.error('Error al cerrar sesión');
+            }
+        })
+        .catch(error => {
+            console.error('Error al cerrar sesión:', error);
+        });
+}
+    </script>
+</body>
+</html>

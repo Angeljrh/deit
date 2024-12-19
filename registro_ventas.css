@@ -1,0 +1,321 @@
+.wrapper {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+.wrapper .icon {
+    position: relative;
+    background: #fff;
+    border-radius: 50%;
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.wrapper .icon:hover {
+    transform: scale(1.1);
+}
+
+.wrapper .tooltip {
+    position: absolute;
+    top: -35px;
+    background: #000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.wrapper .icon:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.facebook:hover {
+    background: #1877f2;
+    color: #fff;
+}
+
+.twitter:hover {
+    background: #1da1f2;
+    color: #fff;
+}
+
+.instagram:hover {
+    background: #e4405f;
+    color: #fff;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background: url('img/fondo1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: sans-serif;
+    overflow: hidden; /* Evita el scroll */
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9860a;
+}
+.navbar img {
+    height: 50px;
+}
+.navbar a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main-container {
+    display: flex;
+    height: calc(100vh - 70px);
+}
+
+.video-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.video-container video {
+    width: 95%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+.audio-btn {
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #333;
+    border: none;
+    font-size: 12px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.audio-btn:hover {
+    background-color: #f9860a;
+    color: white;
+}
+
+.flip-images {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.flip-container {
+    perspective: 1000px;
+    margin: 15px;
+}
+.flipper {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+.flip-container:hover .flipper {
+    transform: rotateY(180deg);
+}
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+.back {
+    transform: rotateY(180deg);
+}
+.front img, .back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.contact-button {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+.contact-button button {
+    background-color: #f9860a;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-button button:hover {
+    background-color: #e05d00;
+    transform: scale(1.1);
+}
+
+.contact-button p {
+    margin-top: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+#back-button {
+    display: none; 
+    margin: 20px auto;
+    background-color: #e05d00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#back-button:hover {
+    background-color: #c44c00;
+}
+
+#contact-form {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 500px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#contact-form h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#contact-form .form-label {
+    font-weight: bold;
+    color: #444;
+}
+
+#contact-form .form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    transition: border-color 0.3s ease;
+}
+
+#contact-form .form-control:focus {
+    border-color: #f9860a;
+    box-shadow: 0 0 5px rgba(249, 134, 10, 0.5);
+}
+
+
+#back-button {
+    display: none; 
+    margin: 20px auto;
+    background-color: #e05d00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#back-button:hover {
+    background-color: #c44c00;
+}
+
+@media (max-width: 768px) {
+    .flip-images {
+        flex-direction: column;
+    }
+
+    #contact-form {
+        width: 95%;
+    }
+
+    .contact-button button {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+    }
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9860a;
+}
+
+.navbar img {
+    height: 50px;
+}
+
+.navbar a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .navbar img {
+        height: 40px; 
+    }
+
+    .navbar a {
+        margin-top: 10px; 
+    }
+}

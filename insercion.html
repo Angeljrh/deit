@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserción de Datos</title>
+    <link rel="icon" href="img/DEIT.ico" type="image/x-icon">
+    <!-- Universe CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/universe-css/css/universe.min.css">
+       
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('img/DEIT.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #7aff81;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgba(88, 77, 77, 0.8);
+            padding: 15px;
+
+        }
+        .navbar img {
+            width: 60px;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        /* Estilos para los botones utilizando Universe CSS */
+        .vacancy-btn {
+            background-color: #ffffff;
+            color: rgb(129, 149, 192);
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            font-size: 1.1em;
+            box-shadow: 0 4px 10px rgba(116, 110, 170, 0.836);
+        }
+        .vacancy-btn:hover {
+            background-color: #374f41;
+        }
+        .vacancy-btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar"> 
+            <img src="img/DEIT.jpg" alt="Logo">  
+            <span id="username-header">Bienvenido, Usuario!</span>
+            <a href="administrador.html">Inicio</a>
+            <a href="segimiento.html">Seguimiento</a>
+            <a href="ingreso.html">Ingresar Usuario</a>
+            <a href="empleados.html">Empleados asignar tareas</a>
+            <a href="nuevavacante.html">Nueva Vacante</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Seleccione una vacante</h1>
+        <div class="vacancy-btn-container">
+            <button class="vacancy-btn" onclick="redirectToForm('almacenista')">Almacenista</button>
+            <button class="vacancy-btn" onclick="redirectToForm('montacargista')">Montacargista</button>
+            <button class="vacancy-btn" onclick="redirectToForm('farmaceutico')">Farmacéutico</button>
+            <button class="vacancy-btn" onclick="redirectToForm('costurera')">Costurera</button>
+            <button class="vacancy-btn" onclick="redirectToForm('monitorista')">Monitorista</button>
+            <button class="vacancy-btn" onclick="redirectToForm('chofer_de_reparto')">Chofer de Reparto</button>
+            <button class="vacancy-btn" onclick="redirectToForm('auxiliar_de_inventarios')">Auxiliar de Inventarios</button>
+            <button class="vacancy-btn" onclick="redirectToForm('supervisor_de_inventarios')">Supervisor de Inventarios</button>
+            <button class="vacancy-btn" onclick="redirectToForm('supervisor_de_produccion')">Supervisor de Producción</button>
+            <button class="vacancy-btn" onclick="redirectToForm('chofer_de_equipos_pesados')">Chofer de Equipos Pesados</button>
+            <button class="vacancy-btn" onclick="redirectToForm('operador_de_maquina')">Operador de Maquinaria</button>
+            <button class="vacancy-btn" onclick="redirectToForm('inspector_de_calidad')">Inspector de Calidad</button>
+            <button class="vacancy-btn" onclick="redirectToForm('operador_logistico')">Operador Logístico</button>
+            <button class="vacancy-btn" onclick="redirectToForm('auxiliar_de_limpieza')">Auxiliar de Limpieza</button>
+            <button class="vacancy-btn" onclick="redirectToForm('empacador')">Empacador</button>
+        </div>
+        <h2>Seleccionar otra tabla:</h2>
+        <select id="dynamic-table-select">
+            <option value="">Seleccione una tabla...</option>
+        </select>
+    </div>
+    <script>
+        function redirectToForm(vacante) {
+            window.location.href = 'ingreso2.html?vacante=' + encodeURIComponent(vacante);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('obtener_tablas.php')
+                .then(response => response.json())
+                .then(tables => {
+                    const select = document.getElementById('dynamic-table-select');
+                    tables.forEach(table => {
+                        const option = document.createElement('option');
+                        option.value = table;
+                        option.textContent = table.charAt(0).toUpperCase() + table.slice(1).replace(/_/g, ' ');
+                        select.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error al obtener tablas:', error));
+        });
+
+        document.getElementById('dynamic-table-select').addEventListener('change', function() {
+            const selectedTable = this.value;
+            if (selectedTable) {
+                redirectToForm(selectedTable);
+            }
+        });
+    </script>
+</body>
+</html>
